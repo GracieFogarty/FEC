@@ -1,17 +1,13 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sizes from './Sizes.jsx';
 import Quantities from './Quantities.jsx';
 
-function SelectionForm({
-  stock, product, selectedStyle, updateCart,
-}) {
+function SelectionForm({ stock, updateCart }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [quantityOptions, setQuantityOptions] = useState([]);
   const [selectedQuantity, setSelectedQuantity] = useState([]);
   const [stockLoaded, setStockLoaded] = useState(false);
-  const [postResponse, setPostResponse] = useState('');
 
   useEffect(() => {
     if (stock) {
