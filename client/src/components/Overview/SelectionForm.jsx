@@ -9,12 +9,14 @@ function SelectionForm({ stock, updateCart }) {
   const [selectedQuantity, setSelectedQuantity] = useState([]);
   const [stockLoaded, setStockLoaded] = useState(false);
 
+  //checks that data has been passed down as props
   useEffect(() => {
     if (stock) {
       setStockLoaded(true);
     }
   }, [stock]);
 
+  //sets selected size and updates the quantity available for selected size
   const handleSizeSelect = (newSku) => {
     setSelectedSize(newSku);
     const quantities = [];
@@ -31,10 +33,12 @@ function SelectionForm({ stock, updateCart }) {
     }
   };
 
+  //sets selected quantity
   const handleQuantitySelect = (newQuantity) => {
     setSelectedQuantity(newQuantity);
   };
 
+  //sends selected product, size, and quantity to cart
   const addToCart = (event) => {
     event.preventDefault();
     for (let i = 1; i <= selectedQuantity; i++) {
@@ -45,6 +49,7 @@ function SelectionForm({ stock, updateCart }) {
     }
   };
 
+  //if product is out of stock, disables selections and displays out of stock
   if (stockLoaded) {
     if (!stock[0][1].size) {
       return (
@@ -56,6 +61,7 @@ function SelectionForm({ stock, updateCart }) {
       );
     }
 
+    //if no size is selected, disables the add to cart button until a size and quantity are selected
     if (!selectedSize) {
       return (
         <div className="selection-form">
